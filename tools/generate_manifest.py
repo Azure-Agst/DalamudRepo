@@ -4,6 +4,9 @@ import os
 import json
 import requests
 
+GITHUB_ACTIONS = os.environ.get("GITHUB_ACTIONS")
+GITHUB_OUTPUT = os.environ.get("GITHUB_OUTPUT")
+
 DEFAULTS = {
     'IsHide': False,
     'IsTestingExclusive': False,
@@ -77,13 +80,33 @@ def main():
 
         # Append to list
         repo_manifest.append(manifest)
+
+    # Print successful generation
+    print("Successfully generated new repo file!")
+
+    # If it exists, read in existing repo file
+    old_manifest = None
+    if os.path.exists("repo.json"):
+        with open("repo.json", "r") as f:
+            old_manifest = json.load(f)
+
+    # Diff check
+    isUpdated = repo_manifest != old_manifest
     
-    # Write out to file
-    with open("repo.json", "w") as f:
-        json.dump(repo_manifest, f, indent=2)
+    # Print respectively & save to disk
+    if isUpdated:
+        print("Changes detected! Writing to disk...")
+        with open("repo.json", "w") as f:
+            json.dump(repo_manifest, f, indent=2)
+    else:
+        print("No changes detected! Exiting...")
     
-    # Print Success & Exit
-    print("Successfully generated repo file!")
+    # If an action, output value
+    if GITHUB_ACTIONS:
+        print("Writing GitHub output values...")
+        with open(GITHUB_OUTPUT, "a") as f:
+            f.write(f"PUSH_CHANGES={isUpdated}\n")
+    
     return 0
 
 if __name__ == "__main__":

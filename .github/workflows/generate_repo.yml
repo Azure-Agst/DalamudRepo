@@ -58,11 +58,13 @@ jobs:
         run: pip3 install requests
       
       # 1.4.) Run our generation script
-      - name: Run generation script
+      - id: generate_repo
+        name: Run generation script
         run: python3 tools/generate_manifest.py
 
       # 1.5) Add generated file and commit
       - name: Commit and Push
+        if: ${{ steps.generate_repo.outputs.PUSH_CHANGES == 'True' }}
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
