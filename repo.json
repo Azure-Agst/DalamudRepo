@@ -25,11 +25,11 @@
     "Punchline": "A Plugin to track gil earned from FATEs or Treasure Maps!",
     "AcceptsFeedback": true,
     "DownloadCount": 7106412,
-    "DownloadLinkInstall": "https://github.com/Azure-Agst/MapGilTracker/releases/download/v0.0.0.1/latest.zip",
-    "IconUrl": "https://github.com/Azure-Agst/MapGilTracker/releases/download/v0.0.0.1/icon.png",
+    "DownloadLinkInstall": "https://github.com/Azure-Agst/MapGilTracker/releases/download/v0.0.0.2/latest.zip",
+    "IconUrl": "https://github.com/Azure-Agst/MapGilTracker/releases/download/v0.0.0.2/icon.png",
     "IsHide": false,
     "IsTestingExclusive": false,
-    "DownloadLinkTesting": "https://github.com/Azure-Agst/MapGilTracker/releases/download/v0.0.0.1/latest.zip",
-    "DownloadLinkUpdate": "https://github.com/Azure-Agst/MapGilTracker/releases/download/v0.0.0.1/latest.zip"
+    "DownloadLinkTesting": "https://github.com/Azure-Agst/MapGilTracker/releases/download/v0.0.0.2/latest.zip",
+    "DownloadLinkUpdate": "https://github.com/Azure-Agst/MapGilTracker/releases/download/v0.0.0.2/latest.zip"
   }
 ]
