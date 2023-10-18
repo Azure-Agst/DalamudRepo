@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import os
 import json
 import requests
 
@@ -80,6 +81,15 @@ def main():
     # Write out to file
     with open("repo.json", "w") as f:
         json.dump(repo_manifest, f, indent=2)
+    
+    # Print Successes
+    print("Successfully generated repo file!")
+    if os.environ.get("GITHUB_ACTIONS"):
+        with open(os.environ.get("GITHUB_OUTPUT"), "a") as gho:
+            gho.write("::notice::Generated repo file!\n")
+    
+    # Exit
+    return 0
 
 if __name__ == "__main__":
     exit(main())
