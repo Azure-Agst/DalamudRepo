@@ -23,6 +23,9 @@ name: Generate Repo Manifest
 
 on: 
   workflow_dispatch:
+  repository_dispatch:
+    types:
+    - rebuild
   push:
     branches:
     - master
@@ -71,3 +74,10 @@ jobs:
           git add repo.json
           git commit -m "[Actions] Build/Push Repo Manifest"
           git push
+      
+      # 1.6) Notify Devs
+      - name: Notify Devs
+        uses: azuresrv/actions-discord-notifier@v1
+        with:
+          webhook: ${{ secrets.WEBHOOK }}
+          message: The repo was just rebuilt!
